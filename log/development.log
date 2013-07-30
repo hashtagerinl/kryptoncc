@@ -1,0 +1,82 @@
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to DeviseCreateUsers (20130305025014)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130305025014')[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to AddNameToUsers (20130305025017)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "name" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130305025017')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to RolifyCreateRoles (20130305025022)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "resource_id" integer, "resource_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "users_roles" ("user_id" integer, "role_id" integer) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_roles_on_name" ON "roles" ("name")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_roles_on_name_and_resource_type_and_resource_id" ON "roles" ("name", "resource_type", "resource_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_users_roles_on_user_id_and_role_id" ON "users_roles" ("user_id", "role_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130305025022')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddOptinToUsers (20130305031633)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "opt_in" boolean
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130305031633')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddConfirmableToUsers (20130305061951)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "confirmation_token" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "users" ADD "confirmed_at" datetime[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "users" ADD "confirmation_sent_at" datetime
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130305061951')[0m
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-30 14:33:30 -0400
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/registrations/_popup.html.erb (28.7ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (34.2ms)
+Compiled dataTables/jquery.dataTables.bootstrap.css  (10ms)  (pid 13658)
+Compiled bootstrap_and_overrides.css  (1968ms)  (pid 13658)
+Compiled home.css  (1ms)  (pid 13658)
+Compiled registrations.css  (1ms)  (pid 13658)
+Compiled style.css  (4ms)  (pid 13658)
+Compiled application.css  (2079ms)  (pid 13658)
+Compiled jquery.js  (3ms)  (pid 13658)
+Compiled jquery_ujs.js  (0ms)  (pid 13658)
+Compiled bootstrap-transition.js  (0ms)  (pid 13658)
+Compiled bootstrap-affix.js  (0ms)  (pid 13658)
+Compiled bootstrap-alert.js  (0ms)  (pid 13658)
+Compiled bootstrap-button.js  (0ms)  (pid 13658)
+Compiled bootstrap-carousel.js  (0ms)  (pid 13658)
+Compiled bootstrap-collapse.js  (0ms)  (pid 13658)
+Compiled bootstrap-dropdown.js  (0ms)  (pid 13658)
+Compiled bootstrap-modal.js  (0ms)  (pid 13658)
+Compiled bootstrap-scrollspy.js  (0ms)  (pid 13658)
+Compiled bootstrap-tab.js  (0ms)  (pid 13658)
+Compiled bootstrap-tooltip.js  (0ms)  (pid 13658)
+Compiled bootstrap-popover.js  (0ms)  (pid 13658)
+Compiled bootstrap-typeahead.js  (0ms)  (pid 13658)
+Compiled bootstrap.js  (71ms)  (pid 13658)
+Compiled dataTables/jquery.dataTables.js  (4ms)  (pid 13658)
+Compiled dataTables/jquery.dataTables.bootstrap.js  (0ms)  (pid 13658)
+Compiled jquery.stellar.min.js  (0ms)  (pid 13658)
+Compiled waypoints.min.js  (0ms)  (pid 13658)
+Compiled jquery.easing.1.3.js  (0ms)  (pid 13658)
+Compiled custom.js  (0ms)  (pid 13658)
+Compiled home.js  (263ms)  (pid 13658)
+Compiled registrations.js  (133ms)  (pid 13658)
+Compiled users.js  (140ms)  (pid 13658)
+Compiled application.js  (693ms)  (pid 13658)
+  Rendered layouts/_messages.html.erb (0.6ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+Completed 200 OK in 3007ms (Views: 2975.6ms | ActiveRecord: 1.0ms)
